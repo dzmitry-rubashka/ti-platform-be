@@ -1,0 +1,94 @@
+info:
+  title: Internal project - TI Platform
+  version: 0.0.1
+paths:
+  /interviews:
+    post:
+      tags:
+        - Interviews
+      summary: Add One Interview
+      operationId: addOneInterview
+      parameters:
+        - in: body
+          name: interviews
+          description: interviews
+          required: true
+          schema:
+            $ref: "#/definitions/Interview"
+      responses:
+        200:
+          description: Successful response
+          content:
+            application/json:
+              schema:
+                $ref: "#/definitions/Interview"
+        default:
+          description: Error
+          content:
+            application/json:
+              schema:
+                $ref: "#/definitions/Error"
+definitions:
+  TechnologyId:
+    type: number
+    example: 1
+
+  Interviewer:
+    type: object
+    required:
+      - id
+      - role
+    properties:
+      id:
+        type: integer
+        example: 1
+      role:
+        type: string
+        example: HR
+
+  Interview:
+    type: object
+    required:
+      - candidate
+      - hrNotes
+      - interviewers
+    properties:
+      candidate:
+        type: object
+        required:
+          - fullName
+          - expectedLevel
+          - technologies
+          - cv
+        properties:
+          fullName:
+            type: string
+            example: Alexander Ivanov
+          expectedLevel:
+            type: string
+            example: Middle
+          technologies:
+            type: array
+            items:
+              $ref: "#/definitions/TechnologyId"
+          cv:
+            type: string
+            example: http://link-to-candidate-cv3.com
+      hrNotes:
+        type: string
+        example: Some notes
+      interviewers:
+        type: array
+        items:
+          $ref: "#/definitions/Interviewer"
+
+  Error:
+    type: object
+    required:
+      - code
+      - message
+    properties:
+      code:
+        type: integer
+      message:
+        type: string

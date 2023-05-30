@@ -1,0 +1,73 @@
+info:
+  title: Internal project - TI Platform
+  version: 0.0.1
+paths:
+  /users:
+    get:
+      summary: Get All Users
+      tags:
+        - Users
+      operationId: getAllUsers
+      responses:
+        200:
+          description: Successful response
+          content:
+            application/json:
+              schema:
+                $ref: "#/definitions/Users"
+        default:
+          description: Error
+          content:
+            application/json:
+              schema:
+                $ref: "#/definitions/Error"
+
+definitions:
+  User:
+    type: object
+    required:
+      - role
+      - name
+      - email
+    properties:
+      id:
+        type: integer
+        example: 1
+      role:
+        type: array
+        items:
+          $ref: "#/definitions/UserRole"
+      name:
+        type: string
+        example: Alexander Ivanov
+      email:
+        type: string
+        example: alexander.ivanov@itechart.com
+
+  Users:
+    type: array
+    items:
+      $ref: "#/definitions/User"
+
+  UserRole:
+    type: object
+    required:
+      - title
+    properties:
+      id:
+        type: integer
+        example: 2
+      title:
+        type: string
+        example: HR
+
+  Error:
+    type: object
+    required:
+      - code
+      - message
+    properties:
+      code:
+        type: integer
+      message:
+        type: string

@@ -1,0 +1,86 @@
+info:
+  title: Internal project - TI Platform
+  version: 0.0.1
+paths:
+  /technologies:
+    get:
+      summary: Get All Technologies
+      tags:
+        - Technologies
+      operationId: getAllTechnologies
+      responses:
+        200:
+          description: Successful response
+          content:
+            application/json:
+              schema:
+                $ref: "#/definitions/Technologies"
+        default:
+          description: Error
+          content:
+            application/json:
+              schema:
+                $ref: "#/definitions/Error"
+    post:
+      tags:
+        - Technologies
+      summary: Add One Technology
+      operationId: addOneTechnology
+      parameters:
+        - in: body
+          name: technology
+          description: technology
+          required: true
+          schema:
+            $ref: "#/definitions/Technology"
+      responses:
+        200:
+          description: Successful response
+          content:
+            application/json:
+              schema:
+                $ref: "#/definitions/Technology"
+        default:
+          description: Error
+          content:
+            application/json:
+              schema:
+                $ref: "#/definitions/Error"
+
+definitions:
+  Technology:
+    type: object
+    required:
+      - value
+    properties:
+      name:
+        type: string
+        example: JavaScript
+
+  TechnologyToShow:
+    type: object
+    required:
+      - value
+    properties:
+      id:
+        type: integer
+        example: 1
+      name:
+        type: string
+        example: JavaScript
+
+  Technologies:
+    type: array
+    items:
+      $ref: "#/definitions/TechnologyToShow"
+
+  Error:
+    type: object
+    required:
+      - code
+      - message
+    properties:
+      code:
+        type: integer
+      message:
+        type: string

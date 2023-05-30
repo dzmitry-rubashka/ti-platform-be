@@ -1,0 +1,15 @@
+{
+  "compilerOptions": {
+    "types": ["node"],
+    "esModuleInterop": true,
+    "module": "CommonJS",
+    "outDir": "build",
+    "baseUrl": "./**/*",
+    "moduleResolution": "node",
+    "target": "ES6",
+    "resolveJsonModule": true
+  },
+
+  "include": ["src/**/*", ".sequelizerc"],
+  "exclude": ["node_modules"]
+}

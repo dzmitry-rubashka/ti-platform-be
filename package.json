@@ -1,0 +1,77 @@
+{
+  "name": "ti-platform-be",
+  "version": "1.0.0",
+  "main": "build/server.js",
+  "repository": "https://github.com/dpryshchep/ti-platform-be.git",
+  "license": "MIT",
+  "dependencies": {
+    "@babel/register": "^7.18.9",
+    "@types/express": "^4.17.13",
+    "@types/supertest": "^2.0.12",
+    "cors": "^2.8.5",
+    "dotenv": "^16.0.1",
+    "express": "^4.18.1",
+    "mysql2": "^2.3.3",
+    "sequelize": "^6.21.3",
+    "swagger-jsdoc": "^6.2.5",
+    "swagger-ui-express": "^4.5.0",
+    "ts-node": "^10.8.2"
+  },
+  "engines": {
+    "node": ">=16.16.0"
+  },
+  "devDependencies": {
+    "@babel/plugin-transform-modules-commonjs": "^7.18.6",
+    "@babel/preset-typescript": "^7.18.6",
+    "@types/babel__core": "^7.1.19",
+    "@types/cors": "^2.8.12",
+    "@types/jest": "^28.1.4",
+    "@types/node": "^18.0.3",
+    "@typescript-eslint/eslint-plugin": "^5.30.6",
+    "@typescript-eslint/parser": "^5.30.6",
+    "babel-jest": "^28.1.3",
+    "babel-register": "^6.26.0",
+    "eslint": "^7.32.0 || ^8.2.0",
+    "eslint-config-airbnb-base": "^15.0.0",
+    "eslint-config-prettier": "^8.5.0",
+    "eslint-plugin-import": "^2.25.2",
+    "eslint-plugin-prettier": "^4.2.1",
+    "husky": "^8.0.1",
+    "jest": "^28.1.2",
+    "nodemon": "^2.0.19",
+    "prettier": "^2.7.1",
+    "sequelize-cli": "^6.4.1",
+    "supertest": "^6.2.4",
+    "typescript": "^4.7.4"
+  },
+  "scripts": {
+    "build": "tsc",
+    "start": "node .",
+    "start:dev": "nodemon src/server.ts",
+    "lint": "eslint --ext .ts --fix --cache",
+    "test": "jest",
+    "postinstall": "husky install",
+    "db:create": "sequelize db:create",
+    "db:migrate": "sequelize db:migrate",
+    "db:seed": "sequelize db:seed:all"
+  },
+  "jest": {
+    "collectCoverage": true,
+    "collectCoverageFrom": [
+      "./src/**",
+      "!./src/index.ts",
+      "!./src/config/**",
+      "!./src/models/**",
+      "!./src/seeders/**",
+      "!./src/migrations/**",
+      "!./src/routes/**",
+      "!./src/controllers/**",
+      "!./src/templates/**"
+    ],
+    "coverageThreshold": {
+      "global": {
+        "lines": 100
+      }
+    }
+  }
+}
